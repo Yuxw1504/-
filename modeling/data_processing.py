@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu May 16 17:00:12 2024
-
 @author: yxw
 """
 
@@ -55,6 +53,6 @@ def preprocess_data(data_path, max_len=128, batch_size=16):
     return train_loader, val_loader, label_encoder
 
 if __name__ == "__main__":
-    train_loader, val_loader, label_encoder = preprocess_data('/Users/yxw/Desktop/代码/emotion_nlp/data/data.txt')
+    train_loader, val_loader, label_encoder = preprocess_data('data/data.txt')
     print("Data preprocessing completed.")
 
