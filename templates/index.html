@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emotion Detection</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        form { margin-bottom: 20px; }
+        img { margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Emotion Detection</h1>
+    <form method="post">
+        <textarea name="text" rows="4" cols="50" placeholder="Enter a sentence..."></textarea><br>
+        <input type="submit" value="Detect Emotion">
+    </form>
+    {% if emotion %}
+        <h2>Predicted Emotion: {{ emotion }}</h2>
+        <h3>Top 3 Images:</h3>
+        <div>
+            {% for image in images %}
+                <img src="{{ image }}" alt="Emotion Image" width="200">
+            {% endfor %}
+        </div>
+    {% endif %}
+</body>
+</html>
