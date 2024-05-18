@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu May 16 17:01:41 2024
-
 @author: yxw
 """
 
@@ -92,7 +90,7 @@ def eval_model(model, data_loader, loss_fn, device, n_examples):
 
 def train_model():
     # 加载预处理后的数据
-    texts_train, labels_train, texts_val, labels_val, tokenizer, max_len, label_encoder, batch_size = joblib.load('/Users/yxw/Desktop/代码/emotion_nlp/data/preprocessed_data.pkl')
+    texts_train, labels_train, texts_val, labels_val, tokenizer, max_len, label_encoder, batch_size = joblib.load('data/preprocessed_data.pkl')
     
     # 重新创建训练集和验证集的数据集对象和数据加载器
     train_dataset = EmotionDataset(texts_train, labels_train, tokenizer, max_len)
@@ -151,7 +149,7 @@ def train_model():
     
 def test_model():
     # 加载预处理后的数据
-    texts_train, labels_train, texts_val, labels_val, tokenizer, max_len, label_encoder, batch_size = joblib.load('/Users/yxw/Desktop/代码/emotion_nlp/data/preprocessed_data.pkl')
+    texts_train, labels_train, texts_val, labels_val, tokenizer, max_len, label_encoder, batch_size = joblib.load('data/preprocessed_data.pkl')
     
     # 重新创建验证集的数据集对象和数据加载器
     val_dataset = EmotionDataset(texts_val, labels_val, tokenizer, max_len)
@@ -159,7 +157,7 @@ def test_model():
     
     device = torch.device("mps" if torch.backends.mps.is_built() else "cpu")  # 使用 M1 GPU（MPS）或 CPU
     model = EmotionClassifier(n_classes=len(label_encoder.classes_))
-    model.load_state_dict(torch.load('/Users/yxw/Desktop/代码/emotion_nlp/model/best_model_state.bin'))
+    model.load_state_dict(torch.load('model/best_model_state.bin'))
     model = model.to(device)
     
     test_acc, _ = eval_model(
