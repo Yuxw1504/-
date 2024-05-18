@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu May 16 18:34:40 2024
-
 @author: yxw
 """
 
@@ -39,7 +37,7 @@ def load_model_and_preprocessing():
 
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     model = EmotionClassifier(n_classes=len(label_encoder.classes_))
-    model.load_state_dict(torch.load('/Users/yxw/Desktop/代码/emotion_nlp/model/best_model_state.bin', map_location=device))
+    model.load_state_dict(torch.load('model/best_model_state.bin', map_location=device))
     model = model.to(device)
     model.eval()
 
