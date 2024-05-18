@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Jan 27 00:48:29 2024
-
 @author: yxw
 """
 import json
@@ -29,9 +27,9 @@ def load_data(file_path):
                 labels.append(parts[1])
     return texts, labels
 
-train_texts, train_labels = load_data('/Users/yxw/Desktop/留学相关/数据科学/emotion_nlp/train.txt')
-val_texts, val_labels = load_data('/Users/yxw/Desktop/留学相关/数据科学/emotion_nlp/val.txt')
-test_texts, test_labels = load_data('/Users/yxw/Desktop/留学相关/数据科学/emotion_nlp/test.txt')
+train_texts, train_labels = load_data('train.txt')
+val_texts, val_labels = load_data('val.txt')
+test_texts, test_labels = load_data('test.txt')
 
 # 将数据集转换为DataFrame
 train_df = pd.DataFrame({'Text': train_texts, 'Emotion': train_labels})
