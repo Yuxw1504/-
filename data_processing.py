@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu May 16 17:00:12 2024
-
 @author: yxw
 """
 
@@ -50,7 +48,7 @@ def preprocess_data(data_path, max_len=128, batch_size=16):
     val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
 
     # 保存处理后的数据
-    joblib.dump((texts_train, labels_train, texts_val, labels_val, tokenizer, max_len, label_encoder, batch_size), '/Users/yxw/Desktop/代码/emotion_nlp/data/preprocessed_data.pkl')
+    joblib.dump((texts_train, labels_train, texts_val, labels_val, tokenizer, max_len, label_encoder, batch_size), 'data/preprocessed_data.pkl')
 
     return train_loader, val_loader, label_encoder
 
