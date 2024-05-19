@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+Created on Thu May 16 18:47:31 2024
+
 @author: yxw
 """
 
@@ -12,6 +14,7 @@ import joblib
 import warnings
 from flask import Flask, request, render_template
 import requests
+import os
 
 # 忽略FutureWarning警告
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -19,7 +22,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 class EmotionClassifier(nn.Module):
     def __init__(self, n_classes):
         super(EmotionClassifier, self).__init__()
-        self.bert = BertModel.from_pretrained('bert-base-uncased', force_download=True)
+        self.bert = BertModel.from_pretrained('bert-base-uncased')
         self.drop = nn.Dropout(p=0.3)
         self.out = nn.Linear(self.bert.config.hidden_size, n_classes)
     
@@ -109,10 +112,15 @@ def search_images(emotion, text):
 
     response = requests.get(search_url, params=params, headers=headers)
     response.raise_for_status()
-    search_results = response.json()["data"]
-    image_urls = [result["thumbURL"] for result in search_results if "thumbURL" in result]
     
-    return image_urls
+    try:
+        search_results = response.json()["data"]
+        image_urls = [result["thumbURL"] for result in search_results if "thumbURL" in result]
+        return image_urls
+    except requests.exceptions.JSONDecodeError as e:
+        print(f"JSON decode error: {e.msg}")
+        print(f"Response content: {response.text}")
+        return []
 
 app = Flask(__name__)
 model, tokenizer, label_encoder, max_len, device = load_model_and_preprocessing()
@@ -128,4 +136,4 @@ def index():
     return render_template("index.html")
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)  
+    app.run(debug=True, port=5001)
