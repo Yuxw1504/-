@@ -31,7 +31,7 @@
 
 
 实际效果展示
-![WeChatfc984c16d222fc32066d8cf8b4a36cb4](https://github.com/Yuxw1504/Emotion-Recognition/assets/163949558/9cb1d0c6-84d6-481a-9ca3-e0386830abd8)
+![WeChat5db311b3352e85ee103416394b237d61](https://github.com/Yuxw1504/Emotion-Recognition/assets/163949558/e863cb27-e39b-4cbe-b755-5cbf5536ee0c)
 在输入栏输入 Are you ok?
 得到感情标签以及推荐图片（表情包）
 ![WeChatbd41d04331fdca04ca2c860630aa316b](https://github.com/Yuxw1504/Emotion-Recognition/assets/163949558/a0a8cfc7-1cd7-466e-83aa-fb363565c9c2)
